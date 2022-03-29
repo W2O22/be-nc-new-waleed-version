@@ -1,6 +1,6 @@
 // app.controllers.js
 // - responsible for handling the request, invoking the model, and sending the response
-const {selectTopics, selectAll} = require('../models/app.models')
+const {selectTopics, selectArticleById} = require('../models/app.models')
 
 
 exports.getTopics = (req, res, next) => {
@@ -10,13 +10,18 @@ exports.getTopics = (req, res, next) => {
     res.status(200).send({ topics });
   })
   .catch((err) =>{
-   console.log(err,'err inside controllers')
     next(err);
   })
 };
-// // exports.getAll = (req,res, next) => {
-//   selectAll()
-//     .then((endpoints) => {
-//       res.status(200).send({endpoints})
-//     })
-// }
+
+exports.getArticleById = (req, res, next) => {
+  const {article_id} = req.params;
+  console.log(article_id,'<<<article_id');
+  selectArticleById(article_id)
+    .then((article)=>{
+      res.status(200).send({article});
+    })
+    .catch((err)=>{
+      next(err);
+    })
+}

@@ -8,6 +8,9 @@ exports.selectTopics = () => {
     .query(text)
     .then((result) => result.rows);
   };
-  // exports.selectAA = () => {
+  
 
-  // }
+  exports.selectArticleById = (article_id) => {
+    const query = 'SELECT * FROM articles WHERE article_id = $1'
+    return db.query(query,[article_id]).then((article) => article.rows[0]);
+  };
