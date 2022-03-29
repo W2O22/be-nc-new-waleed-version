@@ -8,4 +8,6 @@ exports.selectTopics = () => {
     .query(text)
     .then((result) => result.rows);
   };
-  
+  // exports.selectAA = () => {
+
+  // }
